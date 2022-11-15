@@ -18,16 +18,21 @@ const crearusuario= async(req,res)=>{
 const  { 
      username,
      correo,
-     nombre,                             
+     nombre, 
+     apellido,
+     cumpleaños,
+     bio,
+     direccion,                            
      contraseña,
      verificarclave
+
       }= req.body;
       
       if(contraseña===verificarclave){
 
      const passwordencriptado = await helpers.encryptPassword(contraseña)
-      const result= await pool.query('INSERT INTO usuario(username,correo,nombre,contraseña) VALUES($1,$2,$3,$4)', [
-     username,correo,nombre,passwordencriptado ])
+     const result= await pool.query('INSERT INTO usuario(username,correo,nombre,apellido,cumpleaños,bio,direccion,contraseña) VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [
+     username,correo,nombre,apellido,cumpleaños,bio,direccion,passwordencriptado ])
       console.log(result)
       res.json(result.rows)
 
