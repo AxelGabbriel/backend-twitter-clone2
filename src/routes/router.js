@@ -28,7 +28,7 @@ const fileFilter = (req, file, cb) => {
 }
 const uploads = multer({ storage, fileFilter })
 
-router.post('/upload', uploads.single('manga'), uploadImage)
+router.post('/upload', uploads.single('bite'), uploadImage)
 
 
 
