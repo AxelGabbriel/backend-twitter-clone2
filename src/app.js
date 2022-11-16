@@ -4,10 +4,11 @@ const session=require('express-session')
 const app = express()
 const {Strategy} =require('passport-local')
 const { LocalStrategy } = require('./strategies')
-
-
+const cors = require('cors')
 
 //middlewares
+
+app.use(cors())
 
 app.use(session({
     secret:'xd',
