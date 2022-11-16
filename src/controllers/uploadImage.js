@@ -7,8 +7,6 @@ const config = {
   max: 500,
   min: 100,
   ssl: { rejectUnauthorized: false }
-
-
 };
 
 const pool = new Pool(config);
