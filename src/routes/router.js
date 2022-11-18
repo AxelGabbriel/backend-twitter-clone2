@@ -30,6 +30,13 @@ const uploads = multer({ storage, fileFilter })
 
 router.post('/upload', uploads.single('bite'), uploadImage)
 
+//rutas de usuario
+router.get('/buscar-usuario/:id_usuario',)
+router.delete('/borrar-usuario/:id_usuario',)
+router.put('/editar-usuario',)
+
+
+
 
 
 module.exports = router

@@ -64,9 +64,44 @@ const  {
       
           
           }
+          //rutas usuario busquedas y delete
+
+
+          //buscando usuario por id
+const buscaridusuario= async(req,res)=>{
+  const id_usuario =req.params.id_usuario
+  const response=await pool.query('SELECT* FROM usuario WHERE  id_usuario=$1',[id_usuario])
+  console.log(response);
+  res.json(response.rows)
+} 
+
+
+//mostrar todos los post
+const leerpost=async(req,res)=>{
+  const result= await pool.query('SELECT*FROM post')
+  res.json(result.rows);
+}
+//borrar post
+const borrarpost= async(req,res)=>{
+  const id_post =req.params.id_post
+  const response=await pool.query('DELETE FROM post WHERE id_post=$1',[id_post])
+  console.log(response);
+  res.json(response.rows)
+
+} 
+
+const buscarpost= async(req,res)=>{
+  const id_usuario =req.params.id_usuario
+  const response=await pool.query('SELECT* FROM post WHERE  id_usuario=$1',[id_usuario])
+  console.log(response);
+  res.json(response.rows)
+ }   
+
+
+
 
     module.exports={
-         crearusuario,
-        crearpost
+         crearusuario,buscaridusuario,
+        crearpost,leerpost,borrarpost,buscarpost
         
      }
