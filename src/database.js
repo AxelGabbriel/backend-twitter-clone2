@@ -75,6 +75,13 @@ const buscaridusuario= async(req,res)=>{
   res.json(response.rows)
 } 
 
+const buscaruser= async(req,res)=>{
+  const username =req.params.username
+  const response=await pool.query('SELECT* FROM usuario WHERE  username=$1',[username])
+  console.log(response);
+  res.json(response.rows)
+} 
+
 
 //mostrar todos los post
 const leerpost=async(req,res)=>{
@@ -102,6 +109,6 @@ const buscarpost= async(req,res)=>{
 
     module.exports={
          crearusuario,buscaridusuario,
-        crearpost,leerpost,borrarpost,buscarpost
+        crearpost,leerpost,borrarpost,buscarpost, buscaruser
         
      }

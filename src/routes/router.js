@@ -32,6 +32,7 @@ router.post('/upload', uploads.single('bite'), uploadImage)
 
 //rutas de usuario
 router.get('/buscar-usuario/:id_usuario',usuario.buscarid)
+router.get('/buscar-usuario/:username',usuario.buscarusername)
 router.put('/editar-usuario',)
 
 //rutas post
