@@ -36,7 +36,7 @@ router.get('/buscar-username/:username',usuario.buscarusername)
 router.put('/editar-usuario',)
 
 //rutas post
-router.get('/crear-post',post.crear)
+router.post('/crear-post',post.crear)
 router.get('/leer-post',post.leerpost)
 router.get('/buscar-post/:id_usuario',post.buscarpost)
 router.delete('/borrar-post',post.borrarpost)
