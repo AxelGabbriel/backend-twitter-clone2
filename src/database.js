@@ -47,13 +47,15 @@ const  {
       const  { 
            id_usuario,
            contenido,
+           foto_url,
+           id_foto,
            fecha                            
            
       
             }= req.body;
             
-           const result= await pool.query('INSERT INTO post(id_usuario,contenido,fecha) VALUES($1,$2,$3)', [
-           id_usuario,contenido,fecha ])
+           const result= await pool.query('INSERT INTO post(id_usuario,contenido,foto_url,id_foto,fecha) VALUES($1,$2,$3,$4,$5)', [
+           id_usuario,contenido,foto_url,id_foto,fecha ])
             console.log(result)
             res.json(result.rows)
       
