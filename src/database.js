@@ -42,8 +42,31 @@ const  {
     }
 
 
+    const crearpost= async(req,res)=>{
+    
+      const  { 
+           id_usuario,
+           contenido,
+           foto_url, 
+           id_foto,
+           retweet,
+           retweet_id,
+           retweet_user,
+           fecha                            
+           
+      
+            }= req.body;
+            
+           const result= await pool.query('INSERT INTO post(id_usuario,contenido,foto_url,id_foto,retweet,retweet_id,retweet_user,fecha) VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [
+           id_usuario,contenido,foto_url,id_foto,retweet,retweet_id,retweet_user,fecha ])
+            console.log(result)
+            res.json(result.rows)
+      
+          
+          }
+
     module.exports={
-         crearusuario
-        
+         crearusuario,
+        crearpost
         
      }
