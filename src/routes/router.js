@@ -1,7 +1,7 @@
 const express= require('express')
 const router = express.Router()
 const usuario = require('../controllers/usuario')
-//const room= require('../controllers/room')
+const post= require('../controllers/post')
 //const puntaje=require('../controllers/puntaje')
 //const passport=require('passport')
 const  {passportAuth}  = require('../middlewares')
@@ -31,12 +31,15 @@ const uploads = multer({ storage, fileFilter })
 router.post('/upload', uploads.single('bite'), uploadImage)
 
 //rutas de usuario
-router.get('/buscar-usuario/:id_usuario',)
-router.delete('/borrar-usuario/:id_usuario',)
+router.get('/buscar-usuario/:id_usuario',usuario.buscarid)
 router.put('/editar-usuario',)
 
-
-
+//rutas post
+router.get('/crear-post',post.crear)
+router.get('/leer-post',post.leerpost)
+router.get('/buscar-post',post.buscarpost)
+router.delete('/borrar-post',post.borrarpost)
+router.put('/editar-post',)
 
 
 module.exports = router
