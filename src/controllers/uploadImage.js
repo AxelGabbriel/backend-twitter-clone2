@@ -16,16 +16,18 @@ exports.uploadImage = async (req, res) => {
     //console.log(req.body)
     //console.log(req.file)
 
-    const { user, content, date} = req.body
+    const { id_usuario, contenido, fecha} = req.body
 
     try {
         const result = await cloudinary.uploader.upload(req.file.path, {
             public_id: `${new Date().getTime()}_tweet`,
             crop: 'fill'
         })
-        console.log('url: ' + result.url + ', username: ' + user + ', contenido: ' + content + ', fecha: ' + date + ', id_cloud: ' + result.public_id)
+        console.log('url: ' + result.url + ', username: ' + id_usuario + ', contenido: ' + contenido + ', fecha: ' + fecha + ', id_cloud: ' + result.public_id)
         /*const resultdb = await pool.query('INSERT INTO foto(url,manga,autor,capitulo,image_id,pagina) VALUES($1,$2,$3,$4,$5,$6)', [
             result.url, nombre, autor, capitulo, result.public_id, pagina])*/
+            const resultdb= await pool.query('INSERT INTO post(id_usuario,contenido,foto_url,id_foto,fecha) VALUES($1,$2,$3,$4,$5)', [
+                id_usuario,contenido,result.url,result.public_id,fecha])
         console.log('registro exitoso')
         res.json('registro exitoso')
 
