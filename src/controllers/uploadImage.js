@@ -20,7 +20,7 @@ exports.uploadImage = async (req, res) => {
 
     try {
         const result = await cloudinary.uploader.upload(req.file.path, {
-            public_id: `${new Date().getTime()}_tweet`,
+            public_id: `${new Date().getTime()}`,
             crop: 'fill'
         })
         console.log('url: ' + result.url + ', username: ' + id_usuario + ', contenido: ' + contenido + ', fecha: ' + fecha + ', id_cloud: ' + result.public_id)
