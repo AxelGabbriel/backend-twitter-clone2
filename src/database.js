@@ -80,7 +80,7 @@ const buscaruser= async(req,res)=>{
 
 //mostrar todos los post
 const leerpost=async(req,res)=>{
-  const result= await pool.query('SELECT*FROM post Inner Join usuario On post.id_usuario = usuario.id_usuario')
+  const result= await pool.query('SELECT*FROM post Inner Join usuario On post.id_usuario = usuario.id_usuario order by id_post desc')
   res.json(result.rows);
 }
 //borrar post
