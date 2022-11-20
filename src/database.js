@@ -101,7 +101,8 @@ const buscarpost= async(req,res)=>{
 
  const buser= async(req,res)=>{
   const username =req.params.username
-  const response=await pool.query('SELECT* FROM usuario where username like %$1%',[username])
+  const f = '%'+username+'%'
+  const response=await pool.query('SELECT* FROM usuario where username like $%1%',[f])
   console.log(response);
   res.json(response.rows)
  }   
