@@ -8,5 +8,12 @@ buscar.bu = (req,res) => {
     }
 }
 
+buscar.bp = (req,res) => {
+    try {bd.bpost(req,res);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 
 module.exports= buscar

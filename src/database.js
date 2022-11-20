@@ -107,12 +107,20 @@ const buscarpost= async(req,res)=>{
   res.json(response.rows)
  }   
 
+ const bpost= async(req,res)=>{
+  const contenido =req.params.contenido
+  const f = '%'+contenido+'%'
+  const response=await pool.query('SELECT* FROM post where contenido like $1',[f])
+  console.log(response);
+  res.json(response.rows)
+ }  
+
 
 
 
     module.exports={
          crearusuario,buscaridusuario,
         crearpost,leerpost,borrarpost,buscarpost, buscaruser,
-        buser, 
+        buser, bpost
         
      }

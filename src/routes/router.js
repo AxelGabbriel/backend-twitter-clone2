@@ -45,6 +45,7 @@ router.put('/editar-post',)
 
 //rutas buscar
 router.get('/buscar-userb/:username', buscar.bu)
+router.get('/buscar-postb/:contenido', buscar.bp)
 
 
 module.exports = router
