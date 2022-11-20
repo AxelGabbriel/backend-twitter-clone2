@@ -99,11 +99,19 @@ const buscarpost= async(req,res)=>{
   res.json(response.rows)
  }   
 
+ const buser= async(req,res)=>{
+  const username =req.params.username
+  const response=await pool.query('SELECT* FROM usuario where username like %$1%',[username])
+  console.log(response);
+  res.json(response.rows)
+ }   
+
 
 
 
     module.exports={
          crearusuario,buscaridusuario,
-        crearpost,leerpost,borrarpost,buscarpost, buscaruser
+        crearpost,leerpost,borrarpost,buscarpost, buscaruser,
+        buser, 
         
      }

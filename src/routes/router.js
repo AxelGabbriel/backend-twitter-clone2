@@ -16,6 +16,7 @@ router.get('/perfil',(req,res)=>{
 //Manejo de Archivos
 const multer = require('multer')
 const { uploadImage } = require('../controllers/uploadImage')
+const buscar = require('../controllers/buscar')
 
 const storage = multer.diskStorage({});
 
@@ -41,6 +42,9 @@ router.get('/leer-post',post.leerpost)
 router.get('/buscar-post/:id_usuario',post.buscarpost)
 router.delete('/borrar-post/:id_post',post.borrarpost)
 router.put('/editar-post',)
+
+//rutas buscar
+router.get('/buscar-userb/:username', buscar.bu)
 
 
 module.exports = router
