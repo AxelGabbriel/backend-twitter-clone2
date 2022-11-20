@@ -39,7 +39,7 @@ router.put('/editar-usuario',)
 router.post('/crear-post',post.crear)
 router.get('/leer-post',post.leerpost)
 router.get('/buscar-post/:id_usuario',post.buscarpost)
-router.delete('/borrar-post',post.borrarpost)
+router.delete('/borrar-post/:id_post',post.borrarpost)
 router.put('/editar-post',)
 
 
