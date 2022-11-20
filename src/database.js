@@ -94,7 +94,7 @@ const borrarpost= async(req,res)=>{
 
 const buscarpost= async(req,res)=>{
   const id_usuario =req.params.id_usuario
-  const response=await pool.query('SELECT* FROM post WHERE  id_usuario=$1',[id_usuario])
+  const response=await pool.query('SELECT* FROM post Inner Join usuario On post.id_usuario = usuario.id_usuario WHERE post.id_usuario=$1 order by id_post desc ',[id_usuario])
   console.log(response);
   res.json(response.rows)
  }   
