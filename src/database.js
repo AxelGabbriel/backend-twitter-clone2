@@ -110,7 +110,7 @@ const buscarpost= async(req,res)=>{
  const bpost= async(req,res)=>{
   const contenido =req.params.contenido
   const f = '%'+contenido+'%'
-  const response=await pool.query('SELECT* FROM post where contenido like $1',[f])
+  const response=await pool.query('SELECT* FROM post Inner Join usuario On post.id_usuario = usuario.id_usuario where contenido like $1 order by id_post desc',[f])
   console.log(response);
   res.json(response.rows)
  }  
