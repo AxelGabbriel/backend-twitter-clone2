@@ -116,6 +116,57 @@ const buscarpost= async(req,res)=>{
  }  
 
 
+// rutas para follow
+
+/*
+buscar seguidos de un usuario
+
+ select * from follows inner join usuario on follows.followingg::integer = usuario.id_user::integer where follows.follower='1' 
+*/
+
+/*
+buscar seguidores de un usuario
+
+ select * from follows inner join usuario on follows.followingg::integer = usuario.id_usuario::integer where follows.followingg='1' 
+*/
+
+/*
+buscar cantidad de seguidos de un usuario
+
+select count(followingg) from follows where follower='1'
+*/
+
+/*
+buscar cantidad de seguidores de un usuario
+
+select count(follower) from follows where followingg='1'
+*/
+
+
+//rutas para likes
+
+/*
+buscar cantidad de likes de un post
+
+select count(id_like) from liked
+where id_post='4'
+*/
+
+/*
+Buscar posts con likes ya incluidos
+
+SELECT post.id_post, post.id_usuario, post.contenido, post.foto_url, post.fecha, u.username, u.nombre, u.apellido, 
+count(l.id_like)
+FROM post
+Join usuario as u
+On post.id_usuario::integer = u.id_usuario::integer 
+Join liked as l
+On post.id_post::integer = l.id_post::integer
+group by post.id_post, post.id_usuario, post.contenido, post.foto_url, post.fecha, u.username, u.nombre, u.apellido
+order by id_post desc
+*/
+
+
 
 
     module.exports={
