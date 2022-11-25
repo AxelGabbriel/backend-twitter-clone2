@@ -22,4 +22,11 @@ like.getl = (req,res) => {
     }
 }
 
+like.bl = (req,res) => {
+    try {bd.blikes(req,res);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 module.exports= like

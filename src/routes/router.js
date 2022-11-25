@@ -62,6 +62,7 @@ router.get('/buscar-seguidoresc/:followingg',follow.getbsrc)
 router.post('/like',like.li)
 router.delete('/dlike/:id_like',like.dli)
 router.get('/buscar-likes',like.getl)
+router.get('/contar-likes/:id_post',like.bl)
 
 
 

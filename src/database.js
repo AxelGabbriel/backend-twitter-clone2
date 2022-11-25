@@ -216,12 +216,24 @@ const buscarl =  async(req,res)=>{
   res.json(response.rows)
  }   
 
+//buscar cantidad de likes de un post
+const blikes= async(req,res)=>{
+  const id_post =req.params.id_post
+  const response=await pool.query(`
+  select count(id_like) from liked
+  where id_post='4'
+  `,[id_post])
+  console.log(response);
+  res.json(response.rows)
+
+} 
+
+
 
 /*
-buscar cantidad de likes de un post
 
-select count(id_like) from liked
-where id_post='4'
+
+
 */
 
 /*
@@ -246,7 +258,7 @@ order by id_post desc
         crearpost,leerpost,borrarpost,buscarpost, buscaruser,
         buser, bpost,
         follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc,
-        like, dlike, buscarl
+        like, dlike, buscarl, blikes
 
         
      }
