@@ -221,7 +221,7 @@ const blikes= async(req,res)=>{
   const id_post =req.params.id_post
   const response=await pool.query(`
   select count(id_like) from liked
-  where id_post='4'
+  where id_post=$1
   `,[id_post])
   console.log(response);
   res.json(response.rows)
