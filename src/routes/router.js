@@ -52,6 +52,12 @@ router.get('/buscar-postb/:contenido', buscar.bp)
 router.post('/follow',follow.fol)
 router.delete('/unfollow/:id_follow',follow.unfol)
 router.get('/buscar-follows',follow.getf)
+router.get('/buscar-seguidos/:follower',follow.getbs)
+router.get('/buscar-seguidosc/:follower',follow.getbsc)
+router.get('/buscar-seguidores/:followingg',follow.getbsr)
+router.get('/buscar-seguidoresc/:followingg',follow.getbsrc)
+
+
 
 
 module.exports = router

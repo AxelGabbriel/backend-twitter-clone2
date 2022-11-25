@@ -133,6 +133,7 @@ const buscarpost= async(req,res)=>{
         res.json(result.rows)
       }
 
+//dejar de seguir
 const unfollow= async(req,res)=>{
   const id_follow =req.params.id_follow
   const response=await pool.query('DELETE FROM follows WHERE id_follow=$1',[id_follow])
@@ -141,37 +142,46 @@ const unfollow= async(req,res)=>{
 
 } 
 
+//buscar follows
 const buscarf =  async(req,res)=>{
   const response=await pool.query('SELECT* FROM follows')
   console.log(response);
   res.json(response.rows)
  }   
 
+//buscar seguidos de un usuario
+const bseguidos =  async(req,res)=>{
+  const follower =req.params.follower
+  const response=await pool.query('select * from follows inner join usuario on follows.followingg::integer = usuario.id_user::integer where follows.follower=$1',[follower])
+  console.log(response);
+  res.json(response.rows)
+ } 
+
+//buscar seguidores de un usuario
+const bseguidores =  async(req,res)=>{
+  const followingg =req.params.followingg
+  const response=await pool.query('select * from follows inner join usuario on follows.followingg::integer = usuario.id_usuario::integer where follows.followingg=$1',[followingg])
+  console.log(response);
+  res.json(response.rows)
+ } 
+
+//buscar cantidad de seguidos de un usuario
+const bseguidosc =  async(req,res)=>{
+  const follower =req.params.follower
+  const response=await pool.query('select count(followingg) from follows where follower=$1',[follower])
+  console.log(response);
+  res.json(response.rows)
+ } 
+
+//buscar cantidad de seguidores de un usuario
+const bseguidoresc =  async(req,res)=>{
+  const followingg =req.params.followingg
+  const response=await pool.query('select count(follower) from follows where followingg=$1',[followingg])
+  console.log(response);
+  res.json(response.rows)
+ } 
 
 
-/*
-buscar seguidos de un usuario
-
- select * from follows inner join usuario on follows.followingg::integer = usuario.id_user::integer where follows.follower='1' 
-*/
-
-/*
-buscar seguidores de un usuario
-
- select * from follows inner join usuario on follows.followingg::integer = usuario.id_usuario::integer where follows.followingg='1' 
-*/
-
-/*
-buscar cantidad de seguidos de un usuario
-
-select count(followingg) from follows where follower='1'
-*/
-
-/*
-buscar cantidad de seguidores de un usuario
-
-select count(follower) from follows where followingg='1'
-*/
 
 
 //rutas para likes
@@ -203,6 +213,8 @@ order by id_post desc
     module.exports={
          crearusuario,buscaridusuario,
         crearpost,leerpost,borrarpost,buscarpost, buscaruser,
-        buser, bpost, follow, unfollow, buscarf
+        buser, bpost,
+        follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc
+        
         
      }
