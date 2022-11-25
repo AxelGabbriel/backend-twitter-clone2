@@ -113,10 +113,41 @@ const buscarpost= async(req,res)=>{
   const response=await pool.query('SELECT* FROM post Inner Join usuario On post.id_usuario = usuario.id_usuario where contenido like $1 order by id_post desc',[f])
   console.log(response);
   res.json(response.rows)
- }  
+ }
 
 
-// rutas para follow
+  // rutas para follow
+ 
+  //seguir usuario
+ const follow = async(req,res)=>{
+    
+  const  { 
+       follower,
+       followingg                
+       
+        }= req.body;
+        
+       const result= await pool.query('INSERT INTO follows(follower,following) VALUES($1,$2)', [
+       follower,followingg ])
+        console.log(result)
+        res.json(result.rows)
+      }
+
+const unfollow= async(req,res)=>{
+  const id_follow =req.params.id_follow
+  const response=await pool.query('DELETE FROM follows WHERE id_follow=$1',[id_post])
+  console.log(response);
+  res.json(response.rows)
+
+} 
+
+const buscarf =  async(req,res)=>{
+  const response=await pool.query('SELECT* FROM follows')
+  console.log(response);
+  res.json(response.rows)
+ }   
+
+
 
 /*
 buscar seguidos de un usuario
@@ -172,6 +203,6 @@ order by id_post desc
     module.exports={
          crearusuario,buscaridusuario,
         crearpost,leerpost,borrarpost,buscarpost, buscaruser,
-        buser, bpost
+        buser, bpost, follow, unfollow, buscarf
         
      }

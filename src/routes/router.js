@@ -2,6 +2,7 @@ const express= require('express')
 const router = express.Router()
 const usuario = require('../controllers/usuario')
 const post= require('../controllers/post')
+const follow= require('../controllers/follow')
 //const puntaje=require('../controllers/puntaje')
 //const passport=require('passport')
 const  {passportAuth}  = require('../middlewares')
@@ -46,6 +47,11 @@ router.put('/editar-post',)
 //rutas buscar
 router.get('/buscar-userb/:username', buscar.bu)
 router.get('/buscar-postb/:contenido', buscar.bp)
+
+//rutas follow
+router.post('/follow',follow.fol)
+router.get('/unfollow',follow.unfol)
+router.delete('/buscar-follows',follow.getf)
 
 
 module.exports = router
