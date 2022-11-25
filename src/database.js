@@ -152,7 +152,7 @@ const buscarf =  async(req,res)=>{
 //buscar seguidos de un usuario
 const bseguidos =  async(req,res)=>{
   const follower =req.params.follower
-  const response=await pool.query('select * from follows inner join usuario on follows.followingg::integer = usuario.id_user::integer where follows.follower=$1',[follower])
+  const response=await pool.query('select * from follows inner join usuario on follows.followingg::integer = usuario.id_usuario::integer where follows.follower=$1',[follower])
   console.log(response);
   res.json(response.rows)
  } 
@@ -215,6 +215,6 @@ order by id_post desc
         crearpost,leerpost,borrarpost,buscarpost, buscaruser,
         buser, bpost,
         follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc
-        
+
         
      }
