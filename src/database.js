@@ -135,7 +135,7 @@ const buscarpost= async(req,res)=>{
 
 const unfollow= async(req,res)=>{
   const id_follow =req.params.id_follow
-  const response=await pool.query('DELETE FROM follows WHERE id_follow=$1',[id_post])
+  const response=await pool.query('DELETE FROM follows WHERE id_follow=$1',[id_follow])
   console.log(response);
   res.json(response.rows)
 

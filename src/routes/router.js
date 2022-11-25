@@ -50,8 +50,8 @@ router.get('/buscar-postb/:contenido', buscar.bp)
 
 //rutas follow
 router.post('/follow',follow.fol)
-router.get('/unfollow',follow.unfol)
-router.delete('/buscar-follows',follow.getf)
+router.delete('/unfollow/:id_follow',follow.unfol)
+router.get('/buscar-follows',follow.getf)
 
 
 module.exports = router
