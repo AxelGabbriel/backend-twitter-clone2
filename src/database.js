@@ -202,7 +202,7 @@ const like = async(req,res)=>{
 
 //dejar de seguir
 const dlike= async(req,res)=>{
-  const id_like =req.params.id_follow
+  const id_like =req.params.id_like
   const response=await pool.query('DELETE FROM liked WHERE id_like=$1',[id_like])
   console.log(response);
   res.json(response.rows)
