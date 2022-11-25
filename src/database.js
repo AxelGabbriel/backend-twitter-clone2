@@ -160,7 +160,7 @@ const bseguidos =  async(req,res)=>{
 //buscar seguidores de un usuario
 const bseguidores =  async(req,res)=>{
   const followingg =req.params.followingg
-  const response=await pool.query('select * from follows inner join usuario on follows.followingg::integer = usuario.id_usuario::integer where follows.followingg=$1',[followingg])
+  const response=await pool.query('select * from follows inner join usuario on follows.follower::integer = usuario.id_usuario::integer where follows.followingg=$1',[followingg])
   console.log(response);
   res.json(response.rows)
  } 
