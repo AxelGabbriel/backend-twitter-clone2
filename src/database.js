@@ -81,9 +81,14 @@ const buscaruser= async(req,res)=>{
 //mostrar todos los post
 const leerpost=async(req,res)=>{
   const result= await pool.query(`
-  SELECT*FROM post 
-  Inner Join usuario 
-  On post.id_usuario = usuario.id_usuario 
+  SELECT post.id_post, post.id_usuario, post.contenido, post.foto_url, post.fecha, u.username, u.nombre, u.apellido, 
+  count(l.id_like)
+  FROM post 
+  Join usuario as u
+  On post.id_usuario::integer = u.id_usuario::integer 
+  Join liked as l
+  On post.id_post::integer = l.id_post::integer
+  group by post.id_post, post.id_usuario, post.contenido, post.foto_url, post.fecha, u.username, u.nombre, u.apellido
   order by id_post desc
   `)
   res.json(result.rows);
