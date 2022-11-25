@@ -186,6 +186,37 @@ const bseguidoresc =  async(req,res)=>{
 
 //rutas para likes
 
+//seguir usuario
+const like = async(req,res)=>{
+    
+  const  { 
+       id_user,
+       id_post            
+        }= req.body;
+        
+       const result= await pool.query('INSERT INTO liked(id_user,id_post) VALUES($1,$2)', [
+        id_user,id_post ])
+        console.log(result)
+        res.json(result.rows)
+      }
+
+//dejar de seguir
+const dlike= async(req,res)=>{
+  const id_like =req.params.id_follow
+  const response=await pool.query('DELETE FROM liked WHERE id_like=$1',[id_like])
+  console.log(response);
+  res.json(response.rows)
+
+} 
+
+//buscar follows
+const buscarl =  async(req,res)=>{
+  const response=await pool.query('SELECT* FROM liked')
+  console.log(response);
+  res.json(response.rows)
+ }   
+
+
 /*
 buscar cantidad de likes de un post
 
@@ -214,7 +245,8 @@ order by id_post desc
          crearusuario,buscaridusuario,
         crearpost,leerpost,borrarpost,buscarpost, buscaruser,
         buser, bpost,
-        follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc
+        follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc,
+        like, dlike, buscarl
 
         
      }
