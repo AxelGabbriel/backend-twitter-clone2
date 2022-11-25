@@ -127,7 +127,7 @@ const buscarpost= async(req,res)=>{
        
         }= req.body;
         
-       const result= await pool.query('INSERT INTO follows(follower,following) VALUES($1,$2)', [
+       const result= await pool.query('INSERT INTO follows(follower,followingg) VALUES($1,$2)', [
        follower,followingg ])
         console.log(result)
         res.json(result.rows)
