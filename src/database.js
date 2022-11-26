@@ -79,11 +79,11 @@ const buscaruser = async (req, res) => {
 
 const edituser = async (req, res) => {
   const {username, correo, nombre, apellido, cumpleaños, bio, direccion, id_usuario} = req.body
-  const res = await pool.query('UPDATE usuario SET username=$1, correo=$2, nombre=$3, apellido=$4, cumpleaños=$5, bio=$6, direccion=$7 WHERE id_usuario=$7', [
+  const response = await pool.query('UPDATE usuario SET username=$1, correo=$2, nombre=$3, apellido=$4, cumpleaños=$5, bio=$6, direccion=$7 WHERE id_usuario=$7', [
     username, correo, nombre, apellido, cumpleaños, bio, direccion, id_usuario
   ])
-  console.log(res)
-  res.json(res.rowCount)
+  console.log(response)
+  res.json(response.rowCount)
 }
 
 
