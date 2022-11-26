@@ -169,7 +169,7 @@ const follow = async (req, res) => {
 const unfollow = async (req, res) => {
   const follower = req.params.follower
   const followingg = req.params.followingg
-  const response = await pool.query('DELETE FROM follows WHERE follower=$1 and following=$2', [follower, followingg])
+  const response = await pool.query('DELETE FROM follows WHERE follower=$1 and followingg=$2', [follower, followingg])
   console.log(response);
   res.json(response.rows)
 
