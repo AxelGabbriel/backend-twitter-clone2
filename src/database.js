@@ -159,7 +159,7 @@ const follow = async (req, res) => {
 
   } = req.body;
 
-  const result = await pool.query('INSERT INTO follows(follower,followingg) VALUES($1,$2)', [
+  const result = await pool.query('INSERT INTO follows(follower, followingg) SELECT $1::varchar , $2::varchar WHERE NOT EXISTS (SELECT follower, followingg FROM follows WHERE follower = $1 and followingg = $2 )', [
     follower, followingg])
   console.log(result)
   res.json(result.rows)
@@ -167,8 +167,9 @@ const follow = async (req, res) => {
 
 //dejar de seguir
 const unfollow = async (req, res) => {
-  const id_follow = req.params.id_follow
-  const response = await pool.query('DELETE FROM follows WHERE id_follow=$1', [id_follow])
+  const follower = req.params.follower
+  const followingg = req.params.followingg
+  const response = await pool.query('DELETE FROM follows WHERE follower=$1 and following=$2', [follower, followingg])
   console.log(response);
   res.json(response.rows)
 
@@ -218,7 +219,7 @@ const bseguidoresc = async (req, res) => {
 
 //rutas para likes
 
-//seguir usuario
+//dar like
 const like = async (req, res) => {
 
   const {

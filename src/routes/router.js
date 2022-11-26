@@ -52,7 +52,7 @@ router.get('/buscar-postb/:contenido', buscar.bp)
 
 //rutas follow
 router.post('/follow',follow.fol)
-router.delete('/unfollow/:id_follow',follow.unfol)
+router.delete('/unfollow/:follower/:followingg',follow.unfol)
 router.get('/buscar-follows',follow.getf)
 router.get('/buscar-seguidos/:follower',follow.getbs)
 router.get('/buscar-seguidosc/:follower',follow.getbsc)
