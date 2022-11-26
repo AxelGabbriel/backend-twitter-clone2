@@ -120,8 +120,7 @@ const buscarpost = async (req, res) => {
 const buscarunpost = async (req, res) => {
   const id_post = req.params.id_post
   const response = await pool.query(`
-  SELECT post.id_post, post.id_usuario, post.contenido, post.foto_url, post.fecha, u.username, u.nombre, u.apellido, 
-  count(l.id_like)
+  SELECT post.id_post, post.id_usuario, post.contenido, post.foto_url, post.fecha, u.username, u.nombre, u.apellido 
   FROM post
   Join usuario as u
   On post.id_usuario::integer = u.id_usuario::integer 
