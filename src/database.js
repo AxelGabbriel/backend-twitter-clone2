@@ -226,7 +226,7 @@ const like = async (req, res) => {
     id_post
   } = req.body;
 
-  const result = await pool.query('INSERT INTO liked(id_user,id_post) SELECT $1,$2 WHERE NOT EXISTS (SELECT id_user, id_post FROM liked WHERE id_user=$1 and id_post=$2)', [
+  const result = await pool.query('INSERT INTO liked(id_user, id_post) SELECT $1::varchar , $2::varchar WHERE NOT EXISTS (SELECT id_user, id_post FROM liked WHERE id_user = $1 and id_post = $2 )', [
     id_user, id_post])
   console.log(result)
   res.json(result.rowCount)
