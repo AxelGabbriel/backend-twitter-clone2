@@ -234,8 +234,9 @@ const like = async (req, res) => {
 
 //dejar de seguir
 const dlike = async (req, res) => {
-  const id_like = req.params.id_like
-  const response = await pool.query('DELETE FROM liked WHERE id_like=$1', [id_like])
+  const id_user = req.params.id_user
+  const id_post = req.params.id_post
+  const response = await pool.query('DELETE FROM liked WHERE id_user=$1 AND id_post=$2', [id_user, id_post])
   console.log(response);
   res.json(response.rows)
 
