@@ -162,7 +162,7 @@ const follow = async (req, res) => {
   const result = await pool.query('INSERT INTO follows(follower, followingg) SELECT $1::varchar , $2::varchar WHERE NOT EXISTS (SELECT follower, followingg FROM follows WHERE follower = $1 and followingg = $2 )', [
     follower, followingg])
   console.log(result)
-  res.json(result.rows)
+  res.json(result.rowCount)
 }
 
 //dejar de seguir
