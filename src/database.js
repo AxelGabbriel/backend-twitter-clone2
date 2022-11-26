@@ -115,7 +115,15 @@ const buscarpost= async(req,res)=>{
   const response=await pool.query('SELECT* FROM post Inner Join usuario On post.id_usuario = usuario.id_usuario WHERE post.id_usuario=$1 order by id_post desc ',[id_usuario])
   console.log(response);
   res.json(response.rows)
- }   
+ }
+ 
+ const buscarunpost= async(req,res)=>{
+  const id_post =req.params.id_post
+  const response=await pool.query('Select * FROM post WHERE id_post=$1',[id_post])
+  console.log(response);
+  res.json(response.rows)
+
+} 
 
  const buser= async(req,res)=>{
   const username =req.params.username
@@ -253,7 +261,7 @@ const blikes= async(req,res)=>{
 
     module.exports={
          crearusuario,buscaridusuario,
-        crearpost,leerpost,borrarpost,buscarpost, buscaruser,
+        crearpost,leerpost,borrarpost,buscarpost, buscaruser, buscarunpost,
         buser, bpost,
         follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc,
         like, dlike, buscarl, blikes

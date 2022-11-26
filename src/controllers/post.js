@@ -17,4 +17,8 @@ post.borrarpost= (req,res)=>{
     try{bd.borrarpost(req,res);}catch(e){console.log(e); }    
 }
 
+post.buscarunpost= (req,res)=>{
+    try{bd.buscarunpost(req,res);}catch(e){console.log(e); }    
+}
+
    module.exports= post
