@@ -42,5 +42,17 @@ usuario.buscarusername = (req, res) => {
 
 }
 
+usuario.editaruser = (req, res) => {
+   try {
+      bd.edituser(req, res);
+
+
+   } catch (e) {
+
+      console.log(e);
+   }
+
+
+}
 
 module.exports = usuario
