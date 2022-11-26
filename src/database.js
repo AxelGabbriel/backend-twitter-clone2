@@ -232,7 +232,7 @@ const like = async (req, res) => {
   res.json(result.rowCount)
 }
 
-//dejar de seguir
+//eliminar like
 const dlike = async (req, res) => {
   const id_user = req.params.id_user
   const id_post = req.params.id_post
@@ -242,7 +242,7 @@ const dlike = async (req, res) => {
 
 }
 
-//buscar follows
+//buscar likes
 const buscarl = async (req, res) => {
   const response = await pool.query('SELECT* FROM liked')
   console.log(response);
