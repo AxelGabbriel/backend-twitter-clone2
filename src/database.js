@@ -328,7 +328,7 @@ const buscarrebitesuser = async (req, res) => {
   where id_usuarior=$1
   `[ id_usuarior ])
   console.log(id_usuarior)
-  res.json(result.rows);
+  res.json(result.rowCount);
 }
 
 
