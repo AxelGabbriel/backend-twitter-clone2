@@ -282,7 +282,7 @@ const blikes = async (req, res) => {
 
 const crearrebite = async (req, res) => {
   const {contenido, fecha, id_post, id_usuariop, id_usuarior} = req.body
-  const response = await pool.query('INSERT INTO usuario(contenido, fecha, id_post, id_usuariop, id_usuarior)  VALUES($1, $2, $3, $4, $5)', [
+  const response = await pool.query('INSERT INTO retweet(contenido, fecha, id_post, id_usuariop, id_usuarior)  VALUES($1, $2, $3, $4, $5)', [
     contenido, fecha, id_post, id_usuariop, id_usuarior
   ])
   console.log(response)
