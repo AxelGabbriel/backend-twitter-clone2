@@ -74,6 +74,7 @@ router.get('/buscar-rebitesu/:id_usuarior',retweet.brebiteu)
 
 //rutas comentario
 router.post('/comentar',comentario.ccomentario)
+router.get('/mostrar-comentarios/:id_post',comentario.mcomentario)
 
 
 module.exports = router

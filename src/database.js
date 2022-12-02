@@ -334,6 +334,7 @@ const buscarrebitesuser = async (req, res) => {
 
 //rutas comentarios
 
+//crear comentarios
 const crearcomentario = async (req, res) => {
   const { contenido, id_post, id_usuario } = req.body
   const response = await pool.query('INSERT INTO comentario(contenido, id_post, id_usuario)  VALUES($1, $2, $3)', [
@@ -341,6 +342,20 @@ const crearcomentario = async (req, res) => {
   ])
   console.log(response)
   res.json(response.rowCount)
+}
+
+//mostrar comentarios
+const mostrarcomentarios = async (req, res) => {
+  const id_post = req.params.id_post
+  const result = await pool.query(`
+  select comentario.id_comentario, comentario.contenido, 
+  u.username, u.nombre, u apellido
+  from comentario
+  join usuario as u
+  on comentario.id_usuario::integer = u.id_usuario
+  where id_post=$1
+  `, [ id_post ])
+  res.json(result.rows);
 }
 
 
@@ -354,7 +369,7 @@ module.exports = {
   follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc,
   like, dlike, buscarl, blikes,
   crearrebite, buscarrebites, buscarrebitesuser,
-  crearcomentario
+  crearcomentario, mostrarcomentarios
 
 
 }
