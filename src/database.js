@@ -349,7 +349,7 @@ const mostrarcomentarios = async (req, res) => {
   const id_post = req.params.id_post
   const result = await pool.query(`
   select comentario.id_comentario, comentario.contenido, 
-  u.username, u.nombre, u apellido
+  u.username, u.nombre, u.apellido
   from comentario
   join usuario as u
   on comentario.id_usuario::integer = u.id_usuario
