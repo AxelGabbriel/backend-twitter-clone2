@@ -4,6 +4,7 @@ const usuario = require('../controllers/usuario')
 const post= require('../controllers/post')
 const follow= require('../controllers/follow')
 const like= require('../controllers/like')
+const retweet= require('../controllers/retweet')
 //const puntaje=require('../controllers/puntaje')
 //const passport=require('passport')
 const  {passportAuth}  = require('../middlewares')
@@ -64,6 +65,9 @@ router.post('/like',like.li)
 router.delete('/dlike/:id_user/:id_post',like.dli)
 router.get('/buscar-likes',like.getl)
 router.get('/contar-likes/:id_post',like.bl)
+
+//rutas retweet
+router.post('/rebite',retweet.crebite)
 
 
 

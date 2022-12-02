@@ -272,6 +272,60 @@ const blikes = async (req, res) => {
 }
 
 
+//rutas comentarios
+
+
+
+
+
+//rutas retweets
+
+const crearrebite = async (req, res) => {
+  const {contenido, fecha, id_post, id_usuariop, id_usuarior} = req.body
+  const response = await pool.query('INSERT INTO usuario VALUES($1, $2, $3, $4, $5)', [
+    contenido, fecha, id_post, id_usuariop, id_usuarior
+  ])
+  console.log(response)
+  res.json(response.rowCount)
+}
+
+
+/*
+buscar todos los retweets
+
+select retweet.id_retweet, retweet.contenido, retweet.fecha,
+retweet.id_post, retweet.id_usuariop, retweet.id_usuarior, 
+b.contenido, b.foto_url, b.fecha, 
+bu.username, bu.nombre, bu.apellido,
+ru.username, ru.nombre, ru.apellido
+from retweet
+join post as b
+on retweet.id_post::integer = b.id_post::integer
+join usuario as bu
+on retweet.id_usuariop::integer = bu.id_usuario::integer
+join usuario as ru
+on retweet.id_usuarior::integer = ru.id_usuario::integer
+*/
+
+
+/*
+buscar todos los retweets de un usuario
+
+select retweet.id_retweet, retweet.contenido, retweet.fecha,
+retweet.id_post, retweet.id_usuariop, retweet.id_usuarior, 
+b.contenido, b.foto_url, b.fecha, 
+bu.username, bu.nombre, bu.apellido,
+ru.username, ru.nombre, ru.apellido
+from retweet
+join post as b
+on retweet.id_post::integer = b.id_post::integer
+join usuario as bu
+on retweet.id_usuariop::integer = bu.id_usuario::integer
+join usuario as ru
+on retweet.id_usuarior::integer = ru.id_usuario::integer
+where retweet.id_usuarior = $1
+*/
+
 
 
 
@@ -281,7 +335,8 @@ module.exports = {
   crearpost, leerpost, borrarpost, buscarpost, buscaruser, buscarunpost,
   buser, bpost,
   follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc,
-  like, dlike, buscarl, blikes
+  like, dlike, buscarl, blikes,
+  crearrebite
 
 
 }
