@@ -69,7 +69,7 @@ router.get('/contar-likes/:id_post',like.bl)
 //rutas retweet
 router.post('/rebite',retweet.crebite)
 router.get('/buscar-rebites',retweet.brebite)
-
+router.get('/buscar-rebitesu/:id_usuario',retweet.brebite)
 
 
 module.exports = router

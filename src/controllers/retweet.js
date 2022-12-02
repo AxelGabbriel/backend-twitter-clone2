@@ -7,5 +7,8 @@ retweet.crebite= (req,res)=>{
 retweet.brebite= (req,res)=>{
     try{bd.buscarrebites(req,res);}catch(e){console.log(e); }    
 }
+retweet.brebiteu= (req,res)=>{
+    try{bd.buscarrebitesuser(req,res);}catch(e){console.log(e); }    
+}
 
    module.exports= retweet
