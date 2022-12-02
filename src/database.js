@@ -311,7 +311,7 @@ const buscarrebites = async (req, res) => {
 
 //buscar todos los retweets de un usuario
 const buscarrebitesuser = async (req, res) => {
-  const id_usuario = req.params.id_usuario
+  const id_usuarior = req.params.id_usuarior
   const result = await pool.query(`
   select retweet.id_retweet, retweet.contenido, retweet.fecha,
   retweet.id_post, retweet.id_usuariop, retweet.id_usuarior, 
@@ -325,9 +325,9 @@ const buscarrebitesuser = async (req, res) => {
   on b.id_usuario::integer = bu.id_usuario::integer
   join usuario as ru
   on retweet.id_usuarior::integer = ru.id_usuario::integer
-  where id_usuarior = $1 
-  `[ id_usuario ])
-  console.log(id_usuario)
+  where id_usuarior = $1
+  `[ id_usuarior ])
+  console.log(id_usuarior)
   res.json(result.rows);
 }
 
