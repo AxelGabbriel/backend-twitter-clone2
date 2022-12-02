@@ -325,7 +325,7 @@ const buscarrebitesuser = async (req, res) => {
   on b.id_usuario::integer = bu.id_usuario::integer
   join usuario as ru
   on retweet.id_usuarior::integer = ru.id_usuario::integer
-  where id_usuarior = $1
+  where id_usuarior=$1
   `[ id_usuarior ])
   console.log(id_usuarior)
   res.json(result.rows);
