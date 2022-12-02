@@ -295,7 +295,7 @@ const buscarrebites = async (req, res) => {
   const result = await pool.query(`
   select retweet.id_retweet, retweet.contenido, retweet.fecha,
   retweet.id_post, retweet.id_usuariop, retweet.id_usuarior, 
-  b.contenido, b.foto_url, b.fecha as postfecha, 
+  b.contenido as postcon, b.foto_url, b.fecha as postfecha, 
   bu.username as userp, bu.nombre as nombrep, bu.apellido as apellidop,
   ru.username as userre, ru.nombre as nombrere, ru.apellido as apellidore
   from retweet
