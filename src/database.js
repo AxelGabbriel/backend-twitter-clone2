@@ -78,7 +78,7 @@ const buscaruser = async (req, res) => {
 }
 
 const edituser = async (req, res) => {
-  const {username, correo, nombre, apellido, cumpleaños, bio, direccion, id_usuario} = req.body
+  const { username, correo, nombre, apellido, cumpleaños, bio, direccion, id_usuario } = req.body
   const response = await pool.query('UPDATE usuario SET username=$1, correo=$2, nombre=$3, apellido=$4, cumpleaños=$5, bio=$6, direccion=$7 WHERE id_usuario=$8', [
     username, correo, nombre, apellido, cumpleaños, bio, direccion, id_usuario
   ])
@@ -281,7 +281,7 @@ const blikes = async (req, res) => {
 //rutas retweets
 
 const crearrebite = async (req, res) => {
-  const {contenido, fecha, id_post, id_usuariop, id_usuarior} = req.body
+  const { contenido, fecha, id_post, id_usuariop, id_usuarior } = req.body
   const response = await pool.query('INSERT INTO retweet(contenido, fecha, id_post, id_usuariop, id_usuarior)  VALUES($1, $2, $3, $4, $5)', [
     contenido, fecha, id_post, id_usuariop, id_usuarior
   ])
@@ -290,8 +290,27 @@ const crearrebite = async (req, res) => {
 }
 
 
+//mostrar todos los post
+const buscarrebites = async (req, res) => {
+  const result = await pool.query(`
+  select retweet.id_retweet, retweet.contenido, retweet.fecha,
+  retweet.id_post, retweet.id_usuariop, retweet.id_usuarior, 
+  b.contenido, b.foto_url, b.fecha, 
+  bu.username, bu.nombre, bu.apellido,
+  ru.username, ru.nombre, ru.apellido
+  from retweet
+  join post as b
+  on retweet.id_post::integer = b.id_post::integer
+  join usuario as bu
+  on retweet.id_usuariop::integer = bu.id_usuario::integer
+  join usuario as ru
+  on retweet.id_usuarior::integer = ru.id_usuario::integer
+  `)
+  res.json(result.rows);
+}
+
 /*
-buscar todos los retweets
+//buscar todos los retweets
 
 select retweet.id_retweet, retweet.contenido, retweet.fecha,
 retweet.id_post, retweet.id_usuariop, retweet.id_usuarior, 
@@ -336,7 +355,7 @@ module.exports = {
   buser, bpost,
   follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc,
   like, dlike, buscarl, blikes,
-  crearrebite
+  crearrebite, buscarrebites
 
 
 }
