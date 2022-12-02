@@ -5,6 +5,7 @@ const post= require('../controllers/post')
 const follow= require('../controllers/follow')
 const like= require('../controllers/like')
 const retweet= require('../controllers/retweet')
+const comentario= require('../controllers/comentario')
 //const puntaje=require('../controllers/puntaje')
 //const passport=require('passport')
 const  {passportAuth}  = require('../middlewares')
@@ -70,6 +71,9 @@ router.get('/contar-likes/:id_post',like.bl)
 router.post('/rebite',retweet.crebite)
 router.get('/buscar-rebites',retweet.brebite)
 router.get('/buscar-rebitesu/:id_usuarior',retweet.brebiteu)
+
+//rutas comentario
+router.post('/comentar',comentario.ccomentario)
 
 
 module.exports = router

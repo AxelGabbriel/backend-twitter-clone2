@@ -280,6 +280,7 @@ const blikes = async (req, res) => {
 
 //rutas retweets
 
+//crear
 const crearrebite = async (req, res) => {
   const { contenido, fecha, id_post, id_usuariop, id_usuarior } = req.body
   const response = await pool.query('INSERT INTO retweet(contenido, fecha, id_post, id_usuariop, id_usuarior)  VALUES($1, $2, $3, $4, $5)', [
@@ -327,12 +328,20 @@ const buscarrebitesuser = async (req, res) => {
   on retweet.id_usuarior::integer = ru.id_usuario::integer
   where id_usuarior=$1
   `, [ id_usuarior ])
-  console.log(id_usuarior)
   res.json(result.rows);
 }
 
 
+//rutas comentarios
 
+const crearcomentario = async (req, res) => {
+  const { contenido, id_post, id_usuario } = req.body
+  const response = await pool.query('INSERT INTO comentario(contenido, id_post, id_usuario)  VALUES($1, $2, $3)', [
+    contenido, id_post, id_usuario
+  ])
+  console.log(response)
+  res.json(response.rowCount)
+}
 
 
 
@@ -344,7 +353,8 @@ module.exports = {
   buser, bpost,
   follow, unfollow, buscarf, bseguidos, bseguidosc, bseguidores, bseguidoresc,
   like, dlike, buscarl, blikes,
-  crearrebite, buscarrebites, buscarrebitesuser
+  crearrebite, buscarrebites, buscarrebitesuser,
+  crearcomentario
 
 
 }
