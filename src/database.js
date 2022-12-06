@@ -306,6 +306,7 @@ const buscarrebites = async (req, res) => {
   on b.id_usuario::integer = bu.id_usuario::integer
   join usuario as ru
   on retweet.id_usuarior::integer = ru.id_usuario::integer
+  order by id_retweet desc
   `)
   res.json(result.rows);
 }
@@ -327,6 +328,7 @@ const buscarrebitesuser = async (req, res) => {
   join usuario as ru
   on retweet.id_usuarior::integer = ru.id_usuario::integer
   where id_usuarior=$1
+  order by id_retweet desc
   `, [ id_usuarior ])
   res.json(result.rows);
 }
