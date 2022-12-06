@@ -356,6 +356,7 @@ const mostrarcomentarios = async (req, res) => {
   join usuario as u
   on comentario.id_usuario::integer = u.id_usuario
   where id_post=$1
+  order by id_comentario desc
   `, [ id_post ])
   res.json(result.rows);
 }
